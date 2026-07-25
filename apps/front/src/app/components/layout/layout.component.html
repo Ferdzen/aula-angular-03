@@ -20,7 +20,20 @@
           <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
       }
-      <span>front</span>
+      <span>Favoritos Fernanda</span>
+      <span class="spacer"></span>
+      <button
+      mat-fab
+      color="accent"
+      extended
+      aria-label="Example icon button"
+      routerLink="/favorito-edicao"
+      >
+        <mat-icon>
+          bookmark_add
+        </mat-icon>
+        Novo
+      </button>
     </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>

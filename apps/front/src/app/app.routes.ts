@@ -1,6 +1,7 @@
 import { Route } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { SobreComponent } from './components/sobre/sobre.component';
+import { FavoritoEdicaoModule } from './modules/favorito-edicao/favorito-edicao.module';
 
 export const appRoutes: Route[] = [
   {
@@ -14,6 +15,12 @@ export const appRoutes: Route[] = [
   {
     title: 'Sobre esta aplicação',
     path: 'sobre', component: SobreComponent
+  },
+  {
+    path: 'favorito-edicao',
+    loadChildren: () => import(
+      './modules/favorito-edicao/favorito-edicao.module'
+    ).then(m => m.FavoritoEdicaoModule)
   },
   {
     title: 'Página não encontrada',
