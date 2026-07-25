@@ -1,11 +1,30 @@
-import { Component } from '@angular/core';
+import { BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    MatGridListModule
+
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
-export class HomeComponent {}
+export class HomeComponent {
+
+  public breakpointObserver = inject(BreakpointObserver);
+
+  public umaColuna$ = this.breakpointObserver.observe([
+    Breakpoints.XSmall,
+    Breakpoints.Small,
+  ]).pipe(map(state => state.matches));
+
+  public duasColunas$ = this.breakpointObserver.observe([
+    Breakpoints.Medium,
+  ]).pipe(map(state => state.matches));
+}
