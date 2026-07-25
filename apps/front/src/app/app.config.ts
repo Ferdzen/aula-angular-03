@@ -1,5 +1,5 @@
 import { ApplicationConfig, importProvidersFrom, InjectionToken } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
 
 import { appRoutes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -9,7 +9,11 @@ export const API_BASE = new InjectionToken<string>('URL base do backend');
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(appRoutes), provideAnimationsAsync(),
+    provideRouter(
+      appRoutes,
+      withComponentInputBinding()
+    ), 
+    provideAnimationsAsync(),
     {
       provide: API_BASE,
       useValue: 'http://localhost:3333/api', 

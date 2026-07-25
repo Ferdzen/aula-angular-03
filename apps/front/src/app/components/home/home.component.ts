@@ -7,6 +7,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { map } from 'rxjs/operators';
 
 import { FavoritoService } from '../../services/favorito/favorito.service';
+import { FavoritoEdicaoRoutingModule } from "../../modules/favorito-edicao/favorito-edicao-routing.module";
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -15,9 +17,10 @@ import { FavoritoService } from '../../services/favorito/favorito.service';
     CommonModule,
     MatGridListModule,
     MatButtonModule,
-    MatCardModule
-
-  ],
+    MatCardModule,
+    FavoritoEdicaoRoutingModule,
+    RouterModule
+],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
