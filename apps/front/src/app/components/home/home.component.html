@@ -1,29 +1,42 @@
 <main style="padding: 1em">
-<h1>Galeria de sites favoritos</h1>
+  <h1>Galeria de sites favoritos</h1>
 
-<p>Esta é minha galeria de sites</p>
+  <p>Esta é minha galeria de sites</p>
 
-<mat-grid-list [cols]="(umaColuna$ |async) ? 1 : ((duasColunas$ |async) ? 2 : 3)"
-rowHeight="10em"
-gutterSize="1em"
->
-  <mat-grid-tile
-  [style.background-color]="'lightgray'"
-  [style.border]="'.5em'"
-  >Célula 1</mat-grid-tile>
-  <mat-grid-tile
-  [style.background-color]="'lightgray'"
-  [style.border]="'.5em'"
-  >Célula 2</mat-grid-tile>
-  <mat-grid-tile
-  [style.background-color]="'lightgray'"
-  [style.border]="'.5em'"
-  >Célula 3</mat-grid-tile>
-  <mat-grid-tile
-  [style.background-color]="'lightgray'"
-  [style.border]="'.5em'"
-  >Célula 4</mat-grid-tile>
-</mat-grid-list>
+  <mat-grid-list
+    [cols]="(umaColuna$ | async) ? 1 : (duasColunas$ | async) ? 2 : 3"
+    gutterSize="1em"
+  >
+    @for (favorito of favoritos$ | async; track $index) {
+    <mat-grid-tile
+      [style.background-color]="'lightgray'"
+      [style.border]="'.5em'"
+    >
+      <mat-card class="favorito-card">
+          <div style="text-align: center;">
+            <img
+              mat-card-image
+              src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+              alt="Photo of a Shiba Inu"
+              style="width: 100%;"
+            >
+          </div>
+          <mat-card-content>
+            <mat-card-title>
+              {{ favorito.titulo }}
+            </mat-card-title>
+            <p>
+              {{ favorito.descricao }}
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button>LIKE</button>
+            <button mat-button>SHARE</button>
+          </mat-card-actions>
+        </mat-card>
 
 
+    </mat-grid-tile>
+    }
+  </mat-grid-list>
 </main>

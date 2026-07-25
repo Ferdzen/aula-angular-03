@@ -1,15 +1,21 @@
 import { BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { map } from 'rxjs/operators';
+
+import { FavoritoService } from '../../services/favorito/favorito.service';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
     CommonModule,
-    MatGridListModule
+    MatGridListModule,
+    MatButtonModule,
+    MatCardModule
 
   ],
   templateUrl: './home.component.html',
@@ -27,4 +33,8 @@ export class HomeComponent {
   public duasColunas$ = this.breakpointObserver.observe([
     Breakpoints.Medium,
   ]).pipe(map(state => state.matches));
+
+  private favoritoService = inject(FavoritoService);
+
+  public favoritos$ = this.favoritoService.getAll();
 }
